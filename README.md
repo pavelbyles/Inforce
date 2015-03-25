@@ -2,8 +2,7 @@ Just testing ...
 
 1. Appengine
 2. Testing (TDD)
-3. Templates
-UI
+3. Templates UI
 4. Bootstrap
 5. Less
 
