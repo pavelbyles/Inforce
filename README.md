@@ -6,6 +6,19 @@ Just testing ...
 4. Bootstrap
 5. Less
 
+#Go Stuff
+##Install Go Endpoints support
+`go get -u github.com/crhym3/go-endpoints`
+
+##Install test coverage util
+`go get -u github.com/davecgh/go-spew/spew`
+
+##Install Gorilla
+`go get github.com/gorilla/mux`
+`go get github.com/gorilla/schema`
+`go get github.com/gorilla/sessions`
+
+#UI stuff
 `sudo npm install -g bower`<br />
 `sudo npm install -g vulcanize`<br />
 `bower init`<br />
