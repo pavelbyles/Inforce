@@ -12,9 +12,9 @@
 		<h1>About</h1>
 	</div>
 
-	<div class="panel panel-info">
+	<div class="panel panel-primary">
   	<div class="panel-heading">
-    	<h3 class="panel-title">Process</h3>
+    	<h2 class="panel-title">Process</h2>
   	</div>
   	<div class="panel-body">
     	I've used Bower to manage all UI components (JQuery, Font-Awesome, Bootstrap, Bootswatch, Less, HappyJS and Polymer) because it makes updates and installation much easier.
@@ -28,26 +28,43 @@
 					<h3 class="panel-title">PB5.io is made using...</h3>
 				</div>
 				<div class="panel-body">
+<div id="source-button" class="btn btn-primary btn-xs" style="display: block;">&lt; &gt;</div>
 					<h4>Language + Framework</h4>
 					<ul class="list-group">
-						<li class="list-group-item"><a href="http://golang.org">Go 1.4</a></li>
-						<li class="list-group-item"><a href="http://www.gorillatoolkit.org/">Gorilla</a></li>
+						<li class="list-group-item">
+							<a href="http://golang.org">Go 1.4</a>
+						</li>
+						<li class="list-group-item" data-content="go get -u github.com/gorilla/mux, go get github.com/gorilla/schema, go get github.com/gorilla/sessions">
+							<a href="http://www.gorillatoolkit.org/">Gorilla</a>
+						</li>
 						<li class="list-group-item"><a href="http://golang.org/pkg/html/template/">Go HTML Templates</a></li>
 					</ul>
 
 					<h4>UI / UX</h4>
 					<ul class="list-group">
-						<li class="list-group-item"><a href="http://fontawesome.io">Font-Awesome</a></li>
-						<li class="list-group-item"><a href="http://getbootstrap.com">Bootstrap</a></li>
-						<li class="list-group-item"><a href="https://bootswatch.com">Bootswatch</a> (<a href="https://bootswatch.com/paper/">Paper theme</a>)</li>
-						<li class="list-group-item"><a href="http://lesscss.org">Less</a></li>
-						<li class="list-group-item"><a href="https://www.polymer-project.org">Polymer</a></li>
+						<li class="list-group-item" data-content="bower install font-awesome">
+							<a href="http://fontawesome.io">Font-Awesome</a>
+						</li>
+						<li class="list-group-item" data-content="bower install bootstrap"><a href="http://getbootstrap.com">Bootstrap</a></li>
+						<li class="list-group-item" data-content="bower install bootswatch">
+							<a href="https://bootswatch.com">Bootswatch</a> (<a href="https://bootswatch.com/paper/">Paper theme</a>)
+						</li>
+						<li class="list-group-item" data-content="bower install less">
+							<a href="http://lesscss.org">Less</a>
+						</li>
+						<li class="list-group-item" data-content="bower install polymer Polymer/polymer-elements Polymer/polymer-ui-elements Polymer/core-ajax">
+							<a href="https://www.polymer-project.org">Polymer</a>
+						</li>
 					</ul>
 					
 					<h4>Javascript</h4>
 					<ul class="list-group">
-						<li class="list-group-item">Jquery</li>
-						<li class="list-group-item"><a href="http://happyjs.com">HappyJS</a> (form validation)</li>
+						<li class="list-group-item" data-content="bower install jquery">
+							Jquery
+						</li>
+						<li class="list-group-item" data-content="bower install happyjs">
+							<a href="http://happyjs.com">HappyJS</a> (form validation)
+						</li>
 					</ul>
 
 					<h4>Deployment</h4>
@@ -79,5 +96,33 @@
 				}
 			}
 		});*/
+		$(document).ready(function() {
+			$('li').mouseenter(function() {
+				if ($(this).find('#source-button').length == 0) {
+					if ($('#source-button').length > 0) {
+						$('#source-button').remove();
+					}
+					if ($(this).attr('data-content').length > 0) {
+						var content = $(this).attr('data-content');
+					
+						$(this).append('<button id="source-button" type="button" '
+														+ 'class="btn btn-primary btn-xs" '
+														+ 'data-toggle="popover" '
+														+ 'title="Code" '
+														+ 'data-content="' + content + '" '
+														+ 'style="display: block;">&lt; &gt;</button>');
+						$('#source-button').popover();
+					}
+				} else {
+					$(this).find('#source-button').attr('style', 'display:block;');
+				}
+			});
+
+			$('li').mouseleave(function() {
+				if ($(this).find('#source-button').length > 0) {
+					$(this).find('#source-button').attr('style', 'display:none;');
+				}
+			});
+		});
 	</script>	
 {{end}}

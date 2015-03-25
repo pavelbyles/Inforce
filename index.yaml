@@ -11,10 +11,6 @@ indexes:
 # your application using appcfg.py.
 
 - kind: Company
-  properties:
-  - name: Name
-
-- kind: Company
   ancestor: yes
   properties:
   - name: Name

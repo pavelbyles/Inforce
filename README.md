@@ -14,9 +14,9 @@ Just testing ...
 `go get -u github.com/davecgh/go-spew/spew`
 
 ##Install Gorilla
-`go get github.com/gorilla/mux`
-`go get github.com/gorilla/schema`
-`go get github.com/gorilla/sessions`
+`go get github.com/gorilla/mux`<br />
+`go get github.com/gorilla/schema`<br />
+`go get github.com/gorilla/sessions`<br />
 
 #UI stuff
 `sudo npm install -g bower`<br />
@@ -28,7 +28,7 @@ Just testing ...
 `bower install less<`br />
 `bower install Happyjs`<br />
 `bower install polymer Polymer/polymer-elements Polymer/polymer-ui-elements`<br />
-`bower install Polymer/core-ajax<`br />
+`bower install Polymer/core-ajax`<br />
 <br />
 View / test api: `http://localhost:8080/_ah/api/explorer`<br />
 
