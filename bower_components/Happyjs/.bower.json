@@ -1,0 +1,14 @@
+{
+  "name": "Happyjs",
+  "homepage": "https://github.com/HenrikJoreteg/Happy.js",
+  "_release": "d133c8e111",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d133c8e1111ded9ad7e430d8c6119289f72ae3f5"
+  },
+  "_source": "git://github.com/HenrikJoreteg/Happy.js.git",
+  "_target": "*",
+  "_originalSource": "Happyjs",
+  "_direct": true
+}

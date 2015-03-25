@@ -1,0 +1,38 @@
+{{define "index"}}
+{{template "header" .}}
+	<div class="page-header">
+		<h1>{{.Header}}</h1>
+	</div>
+	<div>
+		<img src="/content/images/gopherbw.png" id="gopher" />
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Form Panel</div>
+		<div class="panel-body">
+			<form id="addcompanyform" class="form-horizontal" action="addCompany" method="post">
+				<fieldset>Add Company</fieldset>
+					<input name="companyName" type="text" placeholder="Company name" />
+					<button type="submit" class="btn btn-default">Add</button>
+				</fieldset>
+			</form>
+			<div id="addcompanyresult" style="display:none">
+				Successfully added company
+			</div>
+			<div id="companiesSection">
+				{{template "selectcompanies" .}}
+			</div>
+		</div>
+	</div>
+	<script>
+		$('addcompanyform').isHappy({
+			fields: {
+				'.companyName': {
+					required: true,
+					message: 'A company name is required'
+				}
+			}
+		});
+	</script>	
+{{template "footer" .}}
+{{end}}
+

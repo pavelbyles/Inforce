@@ -1,0 +1,98 @@
+{{define "showcompany"}}
+{{if .IsNoError}}
+	<div>
+		<h4>Company</h4>
+		<h5>{{.Name}}</h5>
+		
+		{{if .IsUserSessionSet}}
+		<div>
+			<form id="sendcompmsg" action="sendCompanyMsg" method="post">
+				<input type="text" name="companyMessage" placeholder="Message to company" /> as {{.SessionUser}}
+				<input type="hidden" name="company" value="{{.Name}}" />
+				<input type="hidden" name="username" value="{{.SessionUser}}" />
+				<button type="submit" class="btn btn-default">Add</button>
+			</form>
+			<div id="msgSentresult" style="display:none"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Company Messages</div>
+				{{if .HasMessages}}
+				{{range .CompanyMessages}}
+				<div class="list-group">
+					<h4 class="list-group-item-heading">
+					{{with .FromUser}}
+						{{.Firstname}} {{.Lastname}}:
+					{{end}}
+					</h4>
+					<p class="list-group-item" style="border-width:0px 0;">
+						<span class="badge">
+						{{with .Timestamp}}
+							{{.Format "2006-01-02"}}
+						{{end}}
+						</span>
+						{{.Text}}
+					</p>
+				</div>
+				{{end}}
+				{{else}}
+					<span>No company messages</span>
+				{{end}}
+			</div>
+		</div>
+		{{end}}
+
+		<div>
+			<form id="addusertocompany" action="addCompUser" method="post">
+				<span>Add user to company:</span>
+				<input type="text" name="NewUsername" placeholder="Username" />
+				<input type="text" name="NewUserFname" placeholder="First name" />
+				<input type="text" name="NewUserLname" placeholder="Last name" />
+				<input type="hidden" name="CompanyName" value="{{.Name}}" />
+				<input type="submit" />
+			</form>
+			or select existing user
+			<form id="setUserForm" action="setUser" method="post">
+				<select name="username">
+				{{range .CompanyUsers}}
+					<option value="{{.Username}}">{{.Username}} - {{.Lastname}}, {{.Firstname}}</option>
+				{{end}}
+				</select>
+				<input type="submit" />
+			</form>
+		</div>
+	</div>
+
+	<div>
+		<div style="float:left;">
+			<h5>Add Department to {{.Name}}</h5>
+			<form id="adddepartmentform" action="addDepartment" method="post">
+				<input type="text" name="NewDeptName" placeholder="Department name" />
+				<input type="hidden" name="CompanyName" value="{{.Name}}" />
+				<input type="submit" value="Add" />
+			</form>
+		</div>
+	<div>
+	<div style="clear:both">
+		<div style="float:left;">
+			<h5>Departments in {{.Name}}</h5>
+			<div style="display:inline-block;float:left">
+				<select name="SelectedDepartment" class="form-control">
+				{{range .Departments}}
+					<option value="{{.Name}}">{{.Name}}</option>
+				{{end}}
+				</select>
+			</div>
+			<span class="badge">{{.NumDepartments}}</span>
+		</div>
+	</div>
+	<div>
+		<h5>Groups in {{.Name}}</h5>
+		<div style="display:inline-block;float:left">
+			<select name="SelectedGroup" class="form-control">
+			{{range .Groups}}
+				<option value="{{.Name}}">{{.Name}}</option>
+			{{end}}
+			</select>
+		</div>
+	</div>
+{{end}}
+{{end}}

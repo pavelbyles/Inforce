@@ -1,0 +1,444 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/PSP3d_EtY5SgrUiYA3d3sWtLSMk\"",
+ "discoveryVersion": "v1",
+ "id": "inforce:v1",
+ "name": "inforce",
+ "version": "v1",
+ "description": "Companies API",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "http://localhost:8080/_ah/api/inforce/v1/",
+ "basePath": "/_ah/api/inforce/v1/",
+ "rootUrl": "http://localhost:8080/_ah/api/",
+ "servicePath": "inforce/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "schemas": {
+  "AddCompanyReq": {
+   "id": "AddCompanyReq",
+   "type": "object",
+   "properties": {
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "AddDeptReq": {
+   "id": "AddDeptReq",
+   "type": "object",
+   "properties": {
+    "companyname": {
+     "type": "string"
+    },
+    "deptname": {
+     "type": "string"
+    }
+   }
+  },
+  "AddResp": {
+   "id": "AddResp",
+   "type": "object",
+   "properties": {
+    "isadded": {
+     "type": "boolean"
+    }
+   }
+  },
+  "AddUserReq": {
+   "id": "AddUserReq",
+   "type": "object",
+   "properties": {
+    "firstname": {
+     "type": "string"
+    },
+    "lastname": {
+     "type": "string"
+    },
+    "username": {
+     "type": "string"
+    }
+   }
+  },
+  "AddUserToCompReq": {
+   "id": "AddUserToCompReq",
+   "type": "object",
+   "properties": {
+    "selectedcompany": {
+     "type": "string"
+    },
+    "username": {
+     "type": "string"
+    }
+   }
+  },
+  "AddUserToCompResp": {
+   "id": "AddUserToCompResp",
+   "type": "object",
+   "properties": {
+    "errormsg": {
+     "type": "string"
+    },
+    "success": {
+     "type": "boolean"
+    }
+   }
+  },
+  "CompaniesList": {
+   "id": "CompaniesList",
+   "type": "object",
+   "properties": {
+    "companies": {
+     "type": "array",
+     "items": {
+      "$ref": "Company"
+     }
+    }
+   }
+  },
+  "Company": {
+   "id": "Company",
+   "type": "object",
+   "properties": {
+    "Name": {
+     "type": "string"
+    },
+    "Users": {
+     "type": "string"
+    }
+   }
+  },
+  "CompanyUsersResp": {
+   "id": "CompanyUsersResp",
+   "type": "object",
+   "properties": {
+    "errormsg": {
+     "type": "string"
+    },
+    "users": {
+     "type": "array",
+     "items": {
+      "$ref": "UserInfo"
+     }
+    }
+   }
+  },
+  "GetUserInfoResp": {
+   "id": "GetUserInfoResp",
+   "type": "object",
+   "properties": {
+    "errormsg": {
+     "type": "string"
+    },
+    "userinfo": {
+     "$ref": "UserInfo"
+    }
+   }
+  },
+  "Group": {
+   "id": "Group",
+   "type": "object",
+   "properties": {
+    "CompanyKey": {
+     "type": "string"
+    },
+    "DeptKey": {
+     "type": "string"
+    },
+    "Name": {
+     "type": "string"
+    },
+    "StartDate": {
+     "type": "string",
+     "format": "date-time"
+    }
+   }
+  },
+  "GroupsList": {
+   "id": "GroupsList",
+   "type": "object",
+   "properties": {
+    "groups": {
+     "type": "array",
+     "items": {
+      "$ref": "Group"
+     }
+    }
+   }
+  },
+  "LoginReq": {
+   "id": "LoginReq",
+   "type": "object",
+   "properties": {
+    "password": {
+     "type": "string"
+    },
+    "username": {
+     "type": "string"
+    }
+   }
+  },
+  "LoginResp": {
+   "id": "LoginResp",
+   "type": "object",
+   "properties": {
+    "companies": {
+     "type": "array",
+     "items": {
+      "$ref": "Company"
+     }
+    },
+    "errormsg": {
+     "type": "string"
+    },
+    "success": {
+     "type": "boolean"
+    }
+   }
+  },
+  "UserCompaniesResp": {
+   "id": "UserCompaniesResp",
+   "type": "object",
+   "properties": {
+    "companies": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "errormsg": {
+     "type": "string"
+    }
+   }
+  },
+  "UserInfo": {
+   "id": "UserInfo",
+   "type": "object",
+   "properties": {
+    "Companies": {
+     "type": "string"
+    },
+    "Firstname": {
+     "type": "string"
+    },
+    "Lastname": {
+     "type": "string"
+    },
+    "TimeAdded": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "Username": {
+     "type": "string"
+    }
+   }
+  }
+ },
+ "resources": {
+  "companies": {
+   "methods": {
+    "add": {
+     "id": "inforce.companies.add",
+     "path": "addCompanyResult",
+     "httpMethod": "POST",
+     "description": "Adds a company.",
+     "request": {
+      "$ref": "AddCompanyReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "AddResp"
+     }
+    },
+    "adduser": {
+     "id": "inforce.companies.adduser",
+     "path": "addUserToCompResult",
+     "httpMethod": "POST",
+     "description": "Adds a user to a company.",
+     "request": {
+      "$ref": "AddUserToCompReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "AddUserToCompResp"
+     }
+    },
+    "list": {
+     "id": "inforce.companies.list",
+     "path": "companies",
+     "httpMethod": "GET",
+     "description": "List all companies.",
+     "parameters": {
+      "limit": {
+       "type": "integer",
+       "default": "10",
+       "format": "int32",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "CompaniesList"
+     }
+    },
+    "userlist": {
+     "id": "inforce.companies.userlist",
+     "path": "usersResult",
+     "httpMethod": "GET",
+     "description": "Gets users within a company.",
+     "parameters": {
+      "selectedcompany": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "CompanyUsersResp"
+     }
+    }
+   }
+  },
+  "departments": {
+   "methods": {
+    "add": {
+     "id": "inforce.departments.add",
+     "path": "addDeptResult",
+     "httpMethod": "POST",
+     "description": "Adds a department.",
+     "request": {
+      "$ref": "AddDeptReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "AddResp"
+     }
+    },
+    "groups": {
+     "id": "inforce.departments.groups",
+     "path": "groups",
+     "httpMethod": "GET",
+     "description": "List all groups in a specified company's department.",
+     "parameters": {
+      "companyname": {
+       "type": "string",
+       "location": "query"
+      },
+      "deptname": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "GroupsList"
+     }
+    }
+   }
+  },
+  "userInfos": {
+   "methods": {
+    "add": {
+     "id": "inforce.userInfos.add",
+     "path": "addUserResult",
+     "httpMethod": "POST",
+     "description": "Add user.",
+     "request": {
+      "$ref": "AddUserReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "AddResp"
+     }
+    },
+    "companylist": {
+     "id": "inforce.userInfos.companylist",
+     "path": "userCompaniesResult",
+     "httpMethod": "GET",
+     "description": "Get companies that a user is in.",
+     "parameters": {
+      "username": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "UserCompaniesResp"
+     }
+    },
+    "info": {
+     "id": "inforce.userInfos.info",
+     "path": "userResult",
+     "httpMethod": "GET",
+     "description": "Get user.",
+     "parameters": {
+      "username": {
+       "type": "string",
+       "location": "query"
+      }
+     },
+     "response": {
+      "$ref": "GetUserInfoResp"
+     }
+    },
+    "validate": {
+     "id": "inforce.userInfos.validate",
+     "path": "valUserInfoResult",
+     "httpMethod": "POST",
+     "description": "Validates user and returns the companies belonged to.",
+     "request": {
+      "$ref": "LoginReq",
+      "parameterName": "resource"
+     },
+     "response": {
+      "$ref": "LoginResp"
+     }
+    }
+   }
+  }
+ }
+}
