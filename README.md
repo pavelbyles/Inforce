@@ -29,6 +29,9 @@ Just testing ...
 `bower install Happyjs`<br />
 `bower install polymer Polymer/polymer-elements Polymer/polymer-ui-elements`<br />
 `bower install Polymer/core-ajax`<br />
+`bower install --save Polymer/core-elements`<br />
+`bower install --save Polymer/paper-elements`<br />
+`bower install --save Polymer/paper-progress`<br />
 <br />
 View / test api: `http://localhost:8080/_ah/api/explorer`<br />
 

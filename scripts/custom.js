@@ -104,3 +104,4 @@ function addCompanyUser() {
 		activateSelectCompany();
 	});
 }
+
